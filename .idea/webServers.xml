@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="53364a20-bdfd-43c9-aafc-48699ad4003f" name="apifast">
+        <fileTransfer rootFolder="/var/www/apifast" accessType="SFTP" host="62.38.140.132" port="2222" sshConfigId="14c67c6e-df97-443c-9101-6e82c3a8dbf1" sshConfig="root@62.38.140.132:2222 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

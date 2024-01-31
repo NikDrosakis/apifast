@@ -5,21 +5,20 @@ import sqlite3
 class Book(BaseModel):
  title: str
  author: str
-#create_table()
 
 def create_connection():
- conn = sqlite3.connect("models/books.db")
- return conn
-def create_table():
- conn = create_connection()
+ conn = sqlite3.connect("books.db")
  cursor = conn.cursor()
- cursor.execute("""
- CREATE TABLE IF NOT EXISTS books (
- id INTEGER PRIMARY KEY AUTOINCREMENT,
- title TEXT NOT NULL,
- author TEXT NOT NULL
- )
- """)
+ table_exists = cursor.fetchone()
+ if not table_exists:
+  cursor.execute("""
+  CREATE TABLE IF NOT EXISTS books (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL,
+  author TEXT NOT NULL
+  )
+  """)
+ return conn
 def insert(book: Book):
  conn = create_connection()
  cursor = conn.cursor()
@@ -46,10 +45,10 @@ def delete(id):
  return id
 
 
-def fetchall():
+def fetchall(table):
  conn = create_connection()
  cur = conn.cursor()
- cur.execute("SELECT * FROM books")
+ cur.execute("SELECT * FROM "+table)
  rows = cur.fetchall()
  conn.commit()
  conn.close()
